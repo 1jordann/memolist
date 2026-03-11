@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.app.AlertDialog;
-
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +68,36 @@ public class MainActivity extends AppCompatActivity {
 
         memoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         memoRecyclerView.setAdapter(memoAdapter);
+
+        ItemTouchHelper.SimpleCallback swipeDelete =
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+                        int position = viewHolder.getAdapterPosition();
+
+                        Memo memo = memoList.get(position);
+
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                        db.execSQL("DELETE FROM memos WHERE id=?",
+                                new Object[]{memo.getId()});
+
+                        memoList.remove(position);
+
+                        memoAdapter.notifyItemRemoved(position);
+                    }
+                };
+
+        new ItemTouchHelper(swipeDelete).attachToRecyclerView(memoRecyclerView);
 
         addMemoButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddMemoActivity.class);
