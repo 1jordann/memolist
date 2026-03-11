@@ -7,6 +7,7 @@
         android:id="@+id/addMemoButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Add Memo"/>
 
     <Button
@@ -25,6 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/memoRecyclerView"
         android:layout_width="match_parent"
@@ -40,19 +47,19 @@
             android:id="@+id/highFilter"
             android:layout_width="126dp"
             android:layout_height="wrap_content"
-            android:text="High" />
+            android:text="High"/>
 
         <Button
             android:id="@+id/mediumFilter"
             android:layout_width="127dp"
             android:layout_height="wrap_content"
-            android:text="Medium" />
+            android:text="Medium"/>
 
         <Button
             android:id="@+id/lowFilter"
             android:layout_width="123dp"
             android:layout_height="wrap_content"
-            android:text="Low" />
+            android:text="Low"/>
 
     </LinearLayout>
 
