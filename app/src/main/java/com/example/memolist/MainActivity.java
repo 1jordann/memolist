@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private Button mediumFilter;
     private Button lowFilter;
 
+    private EditText searchBar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         memoRecyclerView = findViewById(R.id.memoRecyclerView);
         addMemoButton = findViewById(R.id.addMemoButton);
         sortButton = findViewById(R.id.sortButton);
+        highFilter = findViewById(R.id.highFilter);
+        mediumFilter = findViewById(R.id.mediumFilter);
+        lowFilter = findViewById(R.id.lowFilter);
+        searchBar = findViewById(R.id.searchBar);
+
 
         dbHelper = new MemoDbHelper(this);
         memoList = new ArrayList<>();
@@ -97,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
             SQLiteDatabase db3 = dbHelper.getReadableDatabase();
 
-            Cursor cursor3 = db.rawQuery(
+            Cursor cursor3 = db3.rawQuery(
                     "SELECT * FROM memos WHERE priority='High'",
                     null
             );
@@ -127,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
             SQLiteDatabase db4 = dbHelper.getReadableDatabase();
 
-            Cursor cursor4 = db.rawQuery(
+            Cursor cursor4 = db4.rawQuery(
                     "SELECT * FROM memos WHERE priority='Medium'",
                     null
             );
@@ -157,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
             SQLiteDatabase db5 = dbHelper.getReadableDatabase();
 
-            Cursor cursor5 = db.rawQuery(
+            Cursor cursor5 = db5.rawQuery(
                     "SELECT * FROM memos WHERE priority='Low'",
                     null
             );
