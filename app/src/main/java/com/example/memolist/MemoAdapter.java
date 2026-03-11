@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import android.content.Intent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -52,6 +52,19 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoViewHolder
         holder.memoDescription.setText(memo.getDescription());
         holder.memoPriority.setText(memo.getPriority());
         holder.memoDate.setText(memo.getDate());
+
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent = new Intent(v.getContext(), AddMemoActivity.class);
+
+            intent.putExtra("id", memo.getId());
+            intent.putExtra("title", memo.getTitle());
+            intent.putExtra("description", memo.getDescription());
+            intent.putExtra("priority", memo.getPriority());
+            intent.putExtra("date", memo.getDate());
+
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
