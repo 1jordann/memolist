@@ -6,51 +6,51 @@
 
     <EditText
         android:id="@+id/memoTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Memo Title"/>
+        android:layout_width="375dp"
+        android:layout_height="75dp"
+        android:hint="Memo Title" />
 
     <EditText
         android:id="@+id/memoDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Memo Description"/>
+        android:layout_width="376dp"
+        android:layout_height="78dp"
+        android:hint="Memo Description" />
 
     <EditText
         android:id="@+id/memoDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Date"/>
+        android:layout_width="375dp"
+        android:layout_height="75dp"
+        android:hint="Date" />
 
     <RadioGroup
         android:id="@+id/priorityGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="375dp"
+        android:layout_height="176dp">
 
         <RadioButton
             android:id="@+id/highPriority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="High"/>
+            android:text="High" />
 
         <RadioButton
             android:id="@+id/mediumPriority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium"/>
+            android:text="Medium" />
 
         <RadioButton
             android:id="@+id/lowPriority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Low"/>
+            android:text="Low" />
 
     </RadioGroup>
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="match_parent"
+        android:layout_width="379dp"
         android:layout_height="wrap_content"
-        android:text="Save Memo"/>
+        android:text="Save Memo" />
 
 </LinearLayout>
