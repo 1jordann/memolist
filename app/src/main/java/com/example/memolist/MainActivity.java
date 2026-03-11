@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     null
             );
 
-            while(cursor.moveToNext()){
+            while(cursor3.moveToNext()){
 
                 Memo memo = new Memo(
                         cursor.getInt(0),
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     null
             );
 
-            while(cursor.moveToNext()){
+            while(cursor4.moveToNext()){
 
                 Memo memo = new Memo(
                         cursor.getInt(0),
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     null
             );
 
-            while(cursor.moveToNext()){
+            while(cursor5.moveToNext()){
 
                 Memo memo = new Memo(
                         cursor.getInt(0),
@@ -190,6 +193,23 @@ public class MainActivity extends AppCompatActivity {
             memoAdapter.notifyDataSetChanged();
 
         });
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+        });
+
 
     }
 }
