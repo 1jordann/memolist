@@ -15,6 +15,16 @@
         android:layout_height="wrap_content"
         android:text="Sort Memos"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Memos"/>
+
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/memoRecyclerView"
         android:layout_width="match_parent"
