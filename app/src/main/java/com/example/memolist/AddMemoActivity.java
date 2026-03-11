@@ -42,6 +42,13 @@ public class AddMemoActivity extends AppCompatActivity {
 
         saveButton = findViewById(R.id.saveButton);
 
+        Intent intent = getIntent();
+        if(intent.hasExtra("id")){
+            memoTitle.setText(intent.getStringExtra("title"));
+            memoDescription.setText(intent.getStringExtra("description"));
+            memoDate.setText(intent.getStringExtra("date"));
+        }
+
         dbHelper = new MemoDbHelper(AddMemoActivity.this);
 
         saveButton.setOnClickListener(v -> saveMemo());
