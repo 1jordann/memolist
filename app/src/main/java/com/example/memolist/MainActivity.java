@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private MemoAdapter memoAdapter;
     private ArrayList<Memo> memoList;
     private MemoDbHelper dbHelper;
+
     private Button addMemoButton;
     private Button sortButton;
     private Button highFilter;
     private Button mediumFilter;
     private Button lowFilter;
     private Button searchButton;
+
     private EditText searchBar;
 
     @Override
@@ -73,25 +76,48 @@ public class MainActivity extends AppCompatActivity {
 
         sortButton.setOnClickListener(v -> {
 
-            memoList.clear();
+            String[] options = {"Sort by Title", "Sort by Priority", "Sort by Date"};
 
-            SQLiteDatabase db2 = dbHelper.getReadableDatabase();
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Sort Memos");
 
-            Cursor cursor2 = db2.rawQuery("SELECT * FROM memos ORDER BY title", null);
+            builder.setItems(options, (dialog, which) -> {
 
-            while(cursor2.moveToNext()){
-                Memo memo = new Memo(
-                        cursor2.getInt(0),
-                        cursor2.getString(1),
-                        cursor2.getString(2),
-                        cursor2.getString(3),
-                        cursor2.getString(4)
-                );
-                memoList.add(memo);
-            }
+                memoList.clear();
 
-            cursor2.close();
-            memoAdapter.notifyDataSetChanged();
+                SQLiteDatabase db2 = dbHelper.getReadableDatabase();
+                Cursor cursor2;
+
+                if(which == 0){
+                    cursor2 = db2.rawQuery("SELECT * FROM memos ORDER BY title", null);
+                }
+                else if(which == 1){
+                    cursor2 = db2.rawQuery("SELECT * FROM memos ORDER BY priority", null);
+                }
+                else{
+                    cursor2 = db2.rawQuery("SELECT * FROM memos ORDER BY date DESC", null);
+                }
+
+                while(cursor2.moveToNext()){
+
+                    Memo memo = new Memo(
+                            cursor2.getInt(0),
+                            cursor2.getString(1),
+                            cursor2.getString(2),
+                            cursor2.getString(3),
+                            cursor2.getString(4)
+                    );
+
+                    memoList.add(memo);
+                }
+
+                cursor2.close();
+                memoAdapter.notifyDataSetChanged();
+
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
 
         highFilter.setOnClickListener(v -> {
