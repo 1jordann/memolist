@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/memoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Memo Title"/>
+
+    <EditText
+        android:id="@+id/memoDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Memo Description"/>
+
+    <EditText
+        android:id="@+id/memoDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"/>
+
+    <RadioGroup
+        android:id="@+id/priorityGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/highPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High"/>
+
+        <RadioButton
+            android:id="@+id/mediumPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium"/>
+
+        <RadioButton
+            android:id="@+id/lowPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Memo"/>
+
+</LinearLayout>
